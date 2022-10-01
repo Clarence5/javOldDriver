@@ -3012,6 +3012,25 @@
                     }
                 });
             }
+
+            // 搜索番号
+            if ($("a.copy-to-clipboard").length > 0) {
+                let AVID = $("a.copy-to-clipboard")[0].dataset.clipboardText;
+                //查找115是否有此番号
+                Common.search115Data(AVID, function (BOOLEAN_TYPE, playUrl, pc) {
+                    if (BOOLEAN_TYPE) {
+                        let $imgObj = $(".cover-container");
+                        $imgObj.after(`
+                            <div style="position: absolute;width: 100%;height: 12%;background: rgba(0,0,0,0.5);top: 88%;left: 0;">
+                                <p style="color: white;font-size: 46px;margin: 0 0 0px;display: inline-block;text-align: left;">115网盘已拥有此片</p>
+                                <a target="_blank" href="${playUrl}">
+                                <p style="color: white;font-size: 46px;margin: 0 0 0px;display: inline-block;text-align: right;width: 50%;">115在线播放 ►</p></a>
+                            </div>
+                        `);
+                    }
+                    console.log("番号输出:" + AVID);
+                });
+            }
         }
     }
 
